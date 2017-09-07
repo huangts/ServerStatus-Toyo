@@ -49,11 +49,12 @@ def get_hdd():
 		used += usage.used
 	return int(size/1024.0/1024.0), int(used/1024.0/1024.0)
 
-def get_load():
-	try:
-		return os.getloadavg()[0]
-	except:
-		return -1.0
+def get_load_1():
+	return os.getloadavg()[0]
+def get_load_5():
+	return os.getloadavg()[1]
+def get_load_15():
+	return os.getloadavg()[2]
 
 def get_cpu():
 	return psutil.cpu_percent(interval=INTERVAL)
@@ -147,7 +148,9 @@ if __name__ == '__main__':
 				NetRx, NetTx = traffic.get()
 				NET_IN, NET_OUT = liuliang()
 				Uptime = get_uptime()
-				Load = get_load()
+				Load_1 = get_load_1()
+				Load_5 = get_load_5()
+				Load_15 = get_load_15()
 				MemoryTotal, MemoryUsed = get_memory()
 				SwapTotal, SwapUsed = get_swap()
 				HDDTotal, HDDUsed = get_hdd()
@@ -160,7 +163,9 @@ if __name__ == '__main__':
 					timer -= 1*INTERVAL
 
 				array['uptime'] = Uptime
-				array['load'] = Load
+				array['load_1'] = Load_1
+				array['load_5'] = Load_5
+				array['load_15'] = Load_15
 				array['memory_total'] = MemoryTotal
 				array['memory_used'] = MemoryUsed
 				array['swap_total'] = SwapTotal

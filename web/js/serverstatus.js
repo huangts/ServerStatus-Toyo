@@ -88,7 +88,7 @@ function uptime() {
 						"<td id=\"online4\"><div class=\"progress\"><div style=\"width: 100%;\" class=\"progress-bar progress-bar-warning\"><small>加载中</small></div></div></td>" +
 						"<td id=\"name\">加载中</td>" +
 						"<td id=\"type\">加载中</td>" +
-						"<!-- td id=\"host\">加载中</td -->" +
+						"<td id=\"host\">加载中</td>" +
 						"<td id=\"location\">加载中</td>" +
 						"<td id=\"uptime\">加载中</td>" +
 						"<td id=\"load\">加载中</td>" +
@@ -140,7 +140,7 @@ function uptime() {
 			TableRow.children["type"].innerHTML = result.servers[i].type;
 
 			// Host
-			//TableRow.children["host"].innerHTML = result.servers[i].host;
+			TableRow.children["host"].innerHTML = result.servers[i].host;
 
 			// Location
 			TableRow.children["location"].innerHTML = result.servers[i].location;
@@ -178,7 +178,13 @@ function uptime() {
 				if(result.servers[i].load == -1) {
 					TableRow.children["load"].innerHTML = "–";
 				} else {
-					TableRow.children["load"].innerHTML = result.servers[i].load.toFixed(2);
+					var loadstr = ""
+					loadstr += result.servers[i].load_1.toFixed(2);
+					loadstr += " | "
+					loadstr += result.servers[i].load_5.toFixed(2);
+					loadstr += " | "
+					loadstr += result.servers[i].load_15.toFixed(2);
+				TableRow.children["load"].innerHTML = loadstr
 				}
 
 				// Network
