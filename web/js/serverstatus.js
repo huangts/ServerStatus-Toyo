@@ -175,10 +175,10 @@ function uptime() {
 				TableRow.children["uptime"].innerHTML = result.servers[i].uptime;
 
 				// Load
-				if(result.servers[i].ip == -1) {
-					TableRow.children["ip"].innerHTML = "–";
+				if(result.servers[i].load == -1) {
+					TableRow.children["load"].innerHTML = "–";
 				} else {
-					TableRow.children["ip"].innerHTML = result.servers[i].ip;
+					TableRow.children["load"].innerHTML = result.servers[i].load;
 				}
 
 				// Network
