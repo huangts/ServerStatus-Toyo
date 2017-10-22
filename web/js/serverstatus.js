@@ -178,22 +178,9 @@ function uptime() {
 				if(result.servers[i].load == -1) {
 					TableRow.children["load"].innerHTML = "–";
 				} else {
-					var loadstr = ""
-					loadstr += result.servers[i].load_1.toFixed(2);
-					loadstr += " | "
-					loadstr += result.servers[i].load_5.toFixed(2);
-					loadstr += " | "
-					loadstr += result.servers[i].load_15.toFixed(2);
-				TableRow.children["load"].innerHTML = loadstr
+					TableRow.children["load"].innerHTML = result.servers[i].load;
 				}
 
-			        // IP连接数
-				if(result.servers[i].ip == -1) {
-					TableRow.children["ip"].innerHTML = "–";
-				} else {
-					TableRow.children["ip"].innerHTML = result.servers[i].ip;
-				}
-				
 				// Network
 				var netstr = "";
 				if(result.servers[i].network_rx < 1000)
