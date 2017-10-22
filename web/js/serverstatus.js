@@ -187,6 +187,13 @@ function uptime() {
 				TableRow.children["load"].innerHTML = loadstr
 				}
 
+			        // IP连接数
+				if(result.servers[i].ip == -1) {
+					TableRow.children["ip"].innerHTML = "–";
+				} else {
+					TableRow.children["ip"].innerHTML = result.servers[i].ip;
+				}
+				
 				// Network
 				var netstr = "";
 				if(result.servers[i].network_rx < 1000)
