@@ -19,6 +19,7 @@ import os
 import json
 import collections
 import psutil
+import platform
 
 def get_uptime():
 	return int(time.time() - psutil.boot_time())
@@ -55,6 +56,19 @@ def get_load_5():
 	return os.getloadavg()[1]
 def get_load_15():
 	return os.getloadavg()[2]
+
+def get_ip():
+	system = platform.linux_distribution()
+	if system[0][:6] == "CentOS":
+		if system[1][0] == "6":
+			tmp_load = os.popen("netstat -anp |grep ESTABLISHED |grep tcp |grep '::ffff:' |awk '{print $5}' |awk -F ':' '{print $4}' |sort -u |wc -l").read()
+		else:
+			tmp_load = os.popen("netstat -anp |grep ESTABLISHED |grep tcp6 |awk '{print $5}' |awk -F ':' '{print $1}' |sort -u |wc -l").read()
+	else:
+		tmp_load = os.popen("netstat -anp |grep ESTABLISHED |grep tcp6 |awk '{print $5}' |awk -F ':' '{print $1}' |sort -u |wc -l").read()
+	
+	return float(tmp_load)
+	#return os.getloadavg()[0]
 
 def get_cpu():
 	return psutil.cpu_percent(interval=INTERVAL)
