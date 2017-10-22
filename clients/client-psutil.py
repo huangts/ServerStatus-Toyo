@@ -50,14 +50,7 @@ def get_hdd():
 		used += usage.used
 	return int(size/1024.0/1024.0), int(used/1024.0/1024.0)
 
-def get_load_1():
-	return os.getloadavg()[0]
-def get_load_5():
-	return os.getloadavg()[1]
-def get_load_15():
-	return os.getloadavg()[2]
-
-def get_ip():
+def get_load():
 	system = platform.linux_distribution()
 	if system[0][:6] == "CentOS":
 		if system[1][0] == "6":
@@ -177,9 +170,7 @@ if __name__ == '__main__':
 					timer -= 1*INTERVAL
 
 				array['uptime'] = Uptime
-				array['load_1'] = Load_1
-				array['load_5'] = Load_5
-				array['load_15'] = Load_15
+				array['load'] = Load
 				array['memory_total'] = MemoryTotal
 				array['memory_used'] = MemoryUsed
 				array['swap_total'] = SwapTotal
