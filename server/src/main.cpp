@@ -133,7 +133,7 @@ int CMain::HandleMessage(int ClientNetID, char *pMessage)
 		if(rStart["uptime"].type)
 			pClient->m_Stats.m_Uptime = rStart["uptime"].u.integer;
 			if(rStart["load"].type)
-				pClient->m_Stats.m_Load = rStart["load_1"].u.dbl;
+				pClient->m_Stats.m_Load = rStart["load"].u.dbl;
 		if(rStart["network_rx"].type)
 			pClient->m_Stats.m_NetworkRx = rStart["network_rx"].u.integer;
 		if(rStart["network_tx"].type)
